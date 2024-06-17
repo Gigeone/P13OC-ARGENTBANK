@@ -1,8 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
+import { useDispatch } from "react-redux";
+import { logIn } from "../app/authSlice";
+import { useNavigate } from "react-router-dom";
+import { getUserLogin } from "../app/apiService";
 
 const SignInPage = () => {
+  const [email, setEmail] = useState("");
+  /* tony@stark.com -  password123 */
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleLoginEvent = async (event) => {
+    event.preventDefault();
+    let user = {
+      email: email,
+      password: password,
+    };
+
+    if (user.email === "" || user.password === "") {
+      setErrorMessage("You must fill all the fields");
+    } else {
+      setErrorMessage("");
+      const response = await getUserLogin(user);
+      console.log(response);
+      if (response.error) {
+        setErrorMessage(response.error);
+      } else {
+        dispatch(logIn({ token: response, email: user.email }));
+        // Check if the token is stored in localStorage
+        const tokenFromLocalStorage = localStorage.getItem("token");
+        console.log("Token from localStorage:", tokenFromLocalStorage);
+
+        navigate("/profile");
+      }
+    }
+    // console.log(user);
+    // dispatch(login(user));
+    // navigate("/profile");
+    // console.log(password);
+  };
+
   return (
     <div>
       <Navbar />
@@ -10,25 +51,36 @@ const SignInPage = () => {
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
           <h1>Sign In</h1>
-          <form>
+          <form onSubmit={handleLoginEvent}>
             <div className="input-wrapper">
-              <label htmlFor="username">Username</label>
-              <input type="text" id="username" />
+              <label htmlFor="email">Username</label>
+              <input
+                type="text"
+                required
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="input-wrapper">
               <label htmlFor="password">Password</label>
-              <input type="password" id="password" />
+              <input
+                type="password"
+                required
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className="input-remember">
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
             {/* Placeholder link */}
-            <a href="./user.html" className="sign-in-button">
+            <span className="error-message">{errorMessage}</span>
+            <button type="submit" className="sign-in-button">
               Sign In
-            </a>
-            {/* Uncomment the button below when converting to React */}
-            {/* <button className="sign-in-button">Sign In</button> */}
+            </button>
           </form>
         </section>
       </main>

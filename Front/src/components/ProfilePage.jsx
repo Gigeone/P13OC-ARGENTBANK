@@ -1,11 +1,61 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
+import { getUserToken } from "../app/apiService";
 
 const ProfilePage = () => {
+  const token = localStorage.getItem("token");
+  console.log(token);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const user = useSelector((state) => state.user);
+  // console.log(user);
+
+  useEffect(() => {
+    (async () => {
+      if (!token) {
+        navigate("/sign-in");
+      }
+      try {
+        const response = await getUserToken(token);
+        console.log(response);
+        // dispatch(
+        //   logIn({
+        //     firstName: response.firstName,
+        //     lastName: response.lastName,
+        //   })
+        // );
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [dispatch, navigate, token]);
+
   return (
     <div>
-      <Navbar />
+      <nav className="main-nav">
+        <Link className="main-nav-logo" to="/">
+          <img
+            className="main-nav-logo-image"
+            src="./src/assets/argentBankLogo.png"
+            alt="Argent Bank Logo"
+          />
+          <h1 className="sr-only">Argent Bank</h1>
+        </Link>
+        <div>
+          <Link className="main-nav-item" to="/profile">
+            <i className="fa fa-user-circle"></i>
+            {/* {user.firstName} */}
+          </Link>
+          <a className="main-nav-item">
+            <i className="fa fa-sign-out"></i>
+            Sign Out
+          </a>
+        </div>
+      </nav>
       <main className="main bg-dark">
         <div className="header">
           <h1>
