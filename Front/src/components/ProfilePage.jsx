@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Navbar from "./NavBar";
+import { useNavigate, Link } from "react-router-dom";
 import Footer from "./Footer";
-import { Link } from "react-router-dom";
 import { getUserToken } from "../app/apiService";
+import { logInSuccess } from "../app/authSlice";
+import EditProfil from "./EditProfil";
+import DynamicNavBar from "./DynamicNavBar";
 
 const ProfilePage = () => {
   const token = localStorage.getItem("token");
   console.log(token);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user);
-  // console.log(user);
+  const firstName = useSelector((state) => state.user.firstName);
+  const lastName = useSelector((state) => state.user.lastName);
 
   useEffect(() => {
     (async () => {
@@ -22,12 +23,12 @@ const ProfilePage = () => {
       try {
         const response = await getUserToken(token);
         console.log(response);
-        // dispatch(
-        //   logIn({
-        //     firstName: response.firstName,
-        //     lastName: response.lastName,
-        //   })
-        // );
+        dispatch(
+          logInSuccess({
+            firstName: response.firstName,
+            lastName: response.lastName,
+          })
+        );
       } catch (error) {
         console.log(error);
       }
@@ -36,7 +37,7 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <nav className="main-nav">
+      {/* <nav className="main-nav">
         <Link className="main-nav-logo" to="/">
           <img
             className="main-nav-logo-image"
@@ -48,22 +49,23 @@ const ProfilePage = () => {
         <div>
           <Link className="main-nav-item" to="/profile">
             <i className="fa fa-user-circle"></i>
-            {/* {user.firstName} */}
+            {firstName}
           </Link>
           <a className="main-nav-item">
             <i className="fa fa-sign-out"></i>
             Sign Out
           </a>
         </div>
-      </nav>
+      </nav> */}
+      <DynamicNavBar />
       <main className="main bg-dark">
         <div className="header">
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            <span>{firstName}</span> <span>{lastName}</span>
           </h1>
-          <button className="edit-button">Edit Name</button>
+          <EditProfil />
         </div>
         <h2 className="sr-only">Accounts</h2>
         <section className="account">

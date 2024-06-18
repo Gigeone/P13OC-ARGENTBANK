@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { logIn } from "../app/authSlice";
 import { useNavigate } from "react-router-dom";
 import { getUserLogin } from "../app/apiService";
+import DynamicNavBar from "./DynamicNavBar";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,10 @@ const SignInPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  // const [user, setUser] = useState({
+  //   email: "" /* tony@stark.com -  steve@rogers.com */,
+  //   password: "" /* password123 - password456 */,
+  // })
 
   const handleLoginEvent = async (event) => {
     event.preventDefault();
@@ -38,15 +43,11 @@ const SignInPage = () => {
         navigate("/profile");
       }
     }
-    // console.log(user);
-    // dispatch(login(user));
-    // navigate("/profile");
-    // console.log(password);
   };
 
   return (
     <div>
-      <Navbar />
+      <DynamicNavBar />
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>

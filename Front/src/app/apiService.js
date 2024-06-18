@@ -46,3 +46,21 @@ export const getUserToken = async (token) => {
     console.log(e)
   }
 }
+
+
+export const putUserInfos = async (token, firstName, lastName) => {
+  try {
+    const response = await axios.put(
+      "http://localhost:3001/api/v1/user/profile",
+      { firstName: firstName, lastName: lastName },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    return response.data.body
+  } catch (e) {
+    console.log(e)
+  }
+}

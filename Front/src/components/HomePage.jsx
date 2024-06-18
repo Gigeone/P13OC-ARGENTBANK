@@ -1,13 +1,14 @@
 import React from "react";
-import Navbar from "./NavBar";
+// import Navbar from "./NavBar";
 import Hero from "./Hero";
 import Features from "./Features";
 import Footer from "./Footer";
+import DynamicNavBar from "./DynamicNavBar";
 
 const Home = () => {
   return (
     <div className="home-page">
-      <Navbar />
+      <DynamicNavBar />
       <main>
         <Hero />
         <Features />
