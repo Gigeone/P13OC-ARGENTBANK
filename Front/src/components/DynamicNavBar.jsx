@@ -5,12 +5,12 @@ import { logOut } from "../app/authSlice";
 import login from "../assets/login.svg";
 import logout from "../assets/logout.svg";
 import logo from "../assets/argentBankLogo.png";
-// import "../../styles/index.scss";
 
 const ProfilNavigation = () => {
-  const token = useSelector((state) => state.user.token);
+  const token = localStorage.getItem("token");
+  console.log(token);
   const firstName = useSelector((state) => state.user.firstName);
-  const lastName = useSelector((state) => state.user.lastName);
+  console.log(firstName);
   const [showSignin, setShowSignin] = useState(true);
   const [showLogOut, setShowLogout] = useState(false);
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const ProfilNavigation = () => {
   }, [token]);
 
   return (
-    <nav className="nav-profil">
+    <nav className="main-nav">
       <NavLink to="/" className="main-nav-logo">
         <img
           className="main-nav-logo__image"
@@ -40,11 +40,12 @@ const ProfilNavigation = () => {
       </NavLink>
 
       {showLogOut ? (
-        <div className="nav-profil_logout">
-          <NavLink className="nav-setting-content" to="/profile">
-            <span>{firstName}</span> <span>{lastName}</span>
+        <div className="main-nav-item">
+          <NavLink className="main-nav-item" to="/profile">
+            <img className="icon-profile" alt="" src={login} />
+            <span>{firstName}</span>
           </NavLink>{" "}
-          <NavLink to="/" onClick={logOutProfil} className="nav-setting-button">
+          <NavLink to="/" onClick={logOutProfil} className="main-nav-item">
             <img className="icon-profile" alt="" src={logout} />
             <span>Sign out</span>
           </NavLink>
@@ -52,7 +53,7 @@ const ProfilNavigation = () => {
       ) : null}
 
       {showSignin ? (
-        <NavLink to="/sign-in" className="nav-profil_signin">
+        <NavLink to="/sign-in" className="main-nav-item">
           <img className="icon-profile" alt="" src={login} />
           <span>Sign In</span>
         </NavLink>

@@ -25,7 +25,10 @@ export const authSlice = createSlice({
     },
 
     logOut: (state) => {
-      state.user = null;
+      state.firstName = null;
+      state.lastName = null;
+      state.email = null;
+      state.isLoggedIn = false;
       state.token = null;
     },
   },

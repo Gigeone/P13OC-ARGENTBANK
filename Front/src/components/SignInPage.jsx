@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { useDispatch } from "react-redux";
 import { logIn } from "../app/authSlice";
@@ -14,10 +13,6 @@ const SignInPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-  // const [user, setUser] = useState({
-  //   email: "" /* tony@stark.com -  steve@rogers.com */,
-  //   password: "" /* password123 - password456 */,
-  // })
 
   const handleLoginEvent = async (event) => {
     event.preventDefault();

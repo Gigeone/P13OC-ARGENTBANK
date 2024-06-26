@@ -36,8 +36,6 @@ const EditProfil = () => {
           lastName: response.lastName,
         })
       );
-
-      setInputShow(false);
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +52,7 @@ const EditProfil = () => {
           onClick={onClick}
         >
           Edit Name
-        </button>{" "}
+        </button>
       </div>
       {inputShow ? (
         <div className="header-profil_input">
@@ -71,7 +69,7 @@ const EditProfil = () => {
               />
             </div>
             <button
-              className="save-button"
+              className="edit-button"
               onClick={handleSubmit}
               disabled={
                 user.firstName === "" || user.lastName === "" ? true : false
@@ -93,7 +91,7 @@ const EditProfil = () => {
                 placeholder={lastName}
               />
             </div>
-            <button className="cancel-button" onClick={onClickclose}>
+            <button className="edit-button" onClick={onClickclose}>
               Cancel
             </button>
           </div>

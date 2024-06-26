@@ -54,6 +54,9 @@ body {
 .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap : 15px;
 }
 
 .main-nav-item:hover {
@@ -262,6 +265,17 @@ body {
 .header {
   color: #fff;
   margin-bottom: 2rem;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header-profil_input {
+  display: flex;
+  margin-bottom: 1rem;
+  gap : 15px;
 }
 
 .transaction-button {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { getUserToken } from "../app/apiService";
 import { logInSuccess } from "../app/authSlice";
@@ -37,26 +37,6 @@ const ProfilePage = () => {
 
   return (
     <div>
-      {/* <nav className="main-nav">
-        <Link className="main-nav-logo" to="/">
-          <img
-            className="main-nav-logo-image"
-            src="./src/assets/argentBankLogo.png"
-            alt="Argent Bank Logo"
-          />
-          <h1 className="sr-only">Argent Bank</h1>
-        </Link>
-        <div>
-          <Link className="main-nav-item" to="/profile">
-            <i className="fa fa-user-circle"></i>
-            {firstName}
-          </Link>
-          <a className="main-nav-item">
-            <i className="fa fa-sign-out"></i>
-            Sign Out
-          </a>
-        </div>
-      </nav> */}
       <DynamicNavBar />
       <main className="main bg-dark">
         <div className="header">

@@ -47,6 +47,8 @@ Once you run the `populate-db` script, you should have two users in your databas
 
 ### Tony Stark
 
+http://localhost:3001/api-docs
+
 - First Name: `Tony`
 - Last Name: `Stark`
 - Email: `tony@stark.com`
@@ -61,7 +63,7 @@ Once you run the `populate-db` script, you should have two users in your databas
 
 ## API Documentation
 
-To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
+To learn more about how the API works, once you have started your local environment, you can visit:
 
 ## Design Assets
 
