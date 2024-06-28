@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { putUserInfos } from "../app/apiService";
 import { logInSuccess } from "../app/authSlice";

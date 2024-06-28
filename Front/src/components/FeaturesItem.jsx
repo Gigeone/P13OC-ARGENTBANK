@@ -1,5 +1,3 @@
-import React from "react";
-
 const FeaturesItem = ({ icon, title, description }) => {
   return (
     <div className="feature-item">

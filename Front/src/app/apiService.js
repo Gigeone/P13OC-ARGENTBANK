@@ -30,6 +30,12 @@ export const getUserLogin = async (user) => {
   }
 }
 
+/**
+ * Retrieves the user's profile information using the provided token.
+ *
+ * @param {string} token - The authentication token.
+ * @return {Object} A Promise that resolves to the user's profile information.
+ */
 export const getUserToken = async (token) => {
   try {
     const response = await axios.post(
@@ -48,6 +54,14 @@ export const getUserToken = async (token) => {
 }
 
 
+/**
+ * Send user information to update the user profile.
+ *
+ * @param {string} token - The authentication token.
+ * @param {string} firstName - The user's first name.
+ * @param {string} lastName - The user's last name.
+ * @return {Object} The updated user profile information.
+ */
 export const putUserInfos = async (token, firstName, lastName) => {
   try {
     const response = await axios.put(

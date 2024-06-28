@@ -303,3 +303,14 @@ body {
     width: 200px;
   }
 }
+
+
+@media (max-width: 720px) {
+  .main-nav-logo__image {
+    width: 120px;
+  }
+  .main-nav-item {
+    font-size: 0.7rem;
+  }
+}
+

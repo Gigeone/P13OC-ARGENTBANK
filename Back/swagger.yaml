@@ -133,8 +133,14 @@ paths:
           description: User transactions retrieved successully
           schema:
             $ref: "#/definitions/TransactionsResponse"
+        "401":
+          description: Access denied - Invalid or missing authorization token
+        "403":
+          description: Access denied - You don’t have permission to access this resource
+        "404":
+          description: Transactions not found - No transactions found for the current month
         "500":
-          description: Internal Server Error
+          description: Internal Server Error - An error occurred on the server
   /user/profile/transactions/{id}:
     get:
       security:
@@ -161,10 +167,13 @@ paths:
           description: Signup Successfully
           schema:
             $ref: "#/definitions/DetailTransactionsResponse"
+        "401":
+          description: Access denied - Invalid or missing authorization token
+        "403":
+          description: Access denied - You don’t have permission to access this resource
         "404":
           description: Transaction not found
-        "403":
-          description: Access Denied – You don’t have permission to access
+
         "500":
           description: Internal Server Error
     put:
@@ -198,10 +207,12 @@ paths:
           description: User profile retrieved successully
           schema:
             $ref: "#/definitions/DetailTransactionsResponse"
+        "401":
+          description: Access denied - Invalid or missing authorization token
         "403":
-          description: Wrong type the good type is string
+          description: Wrong type - The type provided is incorrect
         "404":
-          description: Transaction's detail not found
+          description: Transaction not found - The transaction with the specified ID does not exist
         "500":
           description: Internal Server Error
 securityDefinitions:

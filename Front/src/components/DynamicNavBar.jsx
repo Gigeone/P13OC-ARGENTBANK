@@ -8,9 +8,7 @@ import logo from "../assets/argentBankLogo.png";
 
 const ProfilNavigation = () => {
   const token = localStorage.getItem("token");
-  console.log(token);
   const firstName = useSelector((state) => state.user.firstName);
-  console.log(firstName);
   const [showSignin, setShowSignin] = useState(true);
   const [showLogOut, setShowLogout] = useState(false);
   const dispatch = useDispatch();
